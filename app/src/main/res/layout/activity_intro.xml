@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_ef"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:ignore="MissingConstraints">
+
+    <TextView
+        android:id="@+id/ign_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/huiwei"
+        android:gravity="start|center_vertical"
+        android:paddingStart="40dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="40dp"
+        android:paddingBottom="16dp"
+        android:text="@string/tile_one_line"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/btn_pos"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/clickable_tv"
+        android:backgroundTint="@color/huiwei"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/recognize_pos"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="24dp" />
+
+    <TextView
+        android:id="@+id/btn_manage"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/clickable_tv"
+        android:backgroundTint="@color/gray_80"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/good_manager"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/cprt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/cpry_one_line"
+        android:textSize="14sp" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="24dp" />
+</LinearLayout>

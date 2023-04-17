@@ -1,0 +1,3 @@
+rootProject.name = "AIpos"
+include ':app'
+include ':ai-pos-core'

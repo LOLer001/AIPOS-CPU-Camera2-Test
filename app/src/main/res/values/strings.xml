@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">慧为AI秤</string>
+    <string name="good_name">物品代号</string>
+    <string name="good_id">商品代号</string>
+    <string name="zero3">0.000</string>
+    <string name="zero2">0.00</string>
+    <string name="tile_one_line">慧为智能AI称重系统</string>
+    <string name="recognize_pos">识别称重</string>
+    <string name="good_manager">管理界面</string>
+    <string name="cpry_one_line">Techvision Copyright 2021 Techvision All rights reserved.</string>
+    <string name="title_two_line">慧为智能</string>
+    <string name="tare_kg">皮重（千克）</string>
+    <string name="weight_kg">净重（千克）</string>
+    <string name="price_kg">单价（元每千克）</string>
+    <string name="total_price">总价（元）</string>
+    <string name="logo_mask">物体识别智能称重系统\nTECHVISION\nINTELLIGENT\nTECHNOLOGY\nPRESENT.</string>
+    <string name="confirm">确认</string>
+    <string name="tare">去皮</string>
+    <string name="clean">清空</string>
+    <string name="name_">名称:</string>
+    <string name="apple">苹果</string>
+    <string name="p92">92%</string>
+    <string name="price_kg_">元/Kg</string>
+    <string name="_92">92</string>
+    <string name="list_is_empty">待选列表为空，请放置商品</string>
+    <string name="add_new_good">训练自主学习库</string>
+    <string name="show_goods">管理自主学习库</string>
+    <string name="set_threshold">设置识别阈值（0.9~1.0）</string>
+    <string name="start_preview">开启预览</string>
+    <string name="stop_preview">关闭预览</string>
+    <string name="recognize">识别</string>
+    <string name="get_auth">激活机器授权（云）</string>
+    <string name="get_time">查询模块时间</string>
+    <string name="set_time">设置模块时间</string>
+</resources>

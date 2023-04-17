@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_ef"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:ignore="MissingConstraints">
+
+    <TextView
+        android:id="@+id/ign_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/huiwei"
+        android:gravity="start|center_vertical"
+        android:paddingStart="40dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="40dp"
+        android:paddingBottom="16dp"
+        android:text="@string/tile_one_line"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/btn_add"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/huiwei"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/add_new_good"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/btn_show"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/gray_80"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/show_goods"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/btn_threshold"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/gray_80"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/set_threshold"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/btn_auth"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/gray_80"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/get_auth"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/btn_set_time"-->
+            <!--                            android:layout_width="360dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:background="@drawable/clickable_tv"-->
+            <!--                            android:backgroundTint="@color/gray_80"-->
+            <!--                            android:gravity="center"-->
+            <!--                            android:padding="16dp"-->
+            <!--                            android:text="@string/set_time"-->
+            <!--                            android:textColor="@color/white"-->
+            <!--                            android:textSize="18sp" />-->
+            <!--                        <Space-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="16dp" />-->
+
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/btn_get_time"-->
+            <!--                            android:layout_width="360dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:background="@drawable/clickable_tv"-->
+            <!--                            android:backgroundTint="@color/gray_80"-->
+            <!--                            android:gravity="center"-->
+            <!--                            android:padding="16dp"-->
+            <!--                            android:text="@string/get_time"-->
+            <!--                            android:textColor="@color/white"-->
+            <!--                            android:textSize="18sp" />-->
+
+            <!--                        <Space-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="16dp" />-->
+
+            <TextView
+                android:id="@+id/btn_reboot_device"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/gray_80"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="设备重启"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/btn_reset_device"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/gray_80"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="系统恢复出厂设置"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+<!--            <Space-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="16dp" />-->
+
+            <TextView
+                android:id="@+id/btn_test"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/gray_80"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="测试接口"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/btn_setfreeratio"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/gray_80"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="设置标识区域"
+                android:visibility="visible"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/btn_iot"-->
+            <!--                android:layout_width="360dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:background="@drawable/clickable_tv"-->
+            <!--                android:backgroundTint="@color/gray_80"-->
+            <!--                android:gravity="center"-->
+            <!--                android:padding="16dp"-->
+            <!--                android:text="启动IOT后台服务"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                android:textSize="18sp" />-->
+
+            <!--            <Space-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="16dp" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/btn_iot_stop"-->
+            <!--                android:layout_width="360dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:background="@drawable/clickable_tv"-->
+            <!--                android:backgroundTint="@color/gray_80"-->
+            <!--                android:gravity="center"-->
+            <!--                android:padding="16dp"-->
+            <!--                android:text="关闭IOT后台服务"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                android:textSize="18sp" />-->
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/cprt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/cpry_one_line"
+                android:textSize="14sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

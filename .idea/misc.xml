@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AIPOS/AIpos-Camera2-Tset/app/src/main/res/layout/activity_manager.xml" value="0.15715579710144928" />
+        <entry key="..\:/AIPOS/AIpos-Camera2-Tset/app/src/main/res/layout/activity_pos.xml" value="0.10260416666666666" />
+        <entry key="..\:/AIPOS/AIpos-Camera2-Tset/app/src/main/res/layout/activity_rtsp_vlc.xml" value="0.1" />
+        <entry key="..\:/AIPOS/AIpos-Camera2-Tset/app/src/main/res/layout/layout_manager.xml" value="0.10989583333333333" />
+        <entry key="..\:/AIPOS/AIpos-Camera2-Tset/app/src/main/res/layout/setfree.xml" value="0.15715579710144928" />
+        <entry key="..\:/AIpos/app/src/main/res/drawable/clickable_tv.xml" value="0.1725" />
+        <entry key="..\:/AIpos/app/src/main/res/layout/activity_intro.xml" value="0.4036458333333333" />
+        <entry key="..\:/AIpos/app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
+        <entry key="..\:/AIpos/app/src/main/res/layout/activity_manager.xml" value="0.4036458333333333" />
+        <entry key="..\:/AIpos/app/src/main/res/layout/activity_pos.xml" value="0.1" />
+        <entry key="..\:/AIpos/app/src/main/res/layout/activity_rtsp_vlc.xml" value="0.4036458333333333" />
+        <entry key="..\:/AIpos/app/src/main/res/layout/activity_test.xml" value="0.25" />
+        <entry key="..\:/AIpos/app/src/main/res/layout/item_features.xml" value="0.4036458333333333" />
+        <entry key="..\:/AIpos/app/src/main/res/layout/layout_item.xml" value="0.4036458333333333" />
+        <entry key="..\:/AIpos/app/src/main/res/layout/layout_manager.xml" value="0.4036458333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
+  </component>
+</project>

@@ -1,0 +1,98 @@
+plugins {
+    id 'com.android.application'
+}
+apply plugin: 'kotlin-android'
+
+android {
+    signingConfigs {
+//        debug {
+//            storeFile file('D:\\AndroidIMPro\\ide\\sign\\platform-3355.keystore')
+//            storePassword 'android'
+//            keyPassword 'android'
+//            keyAlias 'androiddebugkey'
+//        }
+//        config {
+//            storeFile file('D:\\AndroidIMPro\\ide\\sign\\platform-3355.keystore')
+//            storePassword 'android'
+//            keyPassword 'android'
+//            keyAlias 'androiddebugkey'
+//        }
+
+//        debug {
+//            storePassword '123456'
+//            keyPassword '123456'
+//            keyAlias 'aiposkey'
+//            storeFile file('F:\\ide\\sign\\aipos-2337A.keystore')
+//        }
+//        config {
+//            keyAlias 'aiposkey'
+//            keyPassword '123456'
+//            storeFile file('F:\\ide\\sign\\aipos-2337A.keystore')
+//            storePassword '123456'
+//        }
+//        debug {
+//            storePassword '123456'
+//            keyPassword '123456'
+//            keyAlias 'rkkey'
+//            storeFile file('F:\\ide\\sign\\rk3288-3322.keystore')
+//        }
+//        config {
+//            keyAlias 'rkkey'
+//            keyPassword '123456'
+//            storeFile file('F:\\ide\\sign\\rk3288-3322.keystore')
+//            storePassword '123456'
+//        }
+    }
+    compileSdkVersion 32
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.techvision.aipos"
+        minSdkVersion 24
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    android {
+        defaultConfig {
+            // ...
+            ndkVersion = "21.3.6528147"
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation files('libs\\classes.jar')
+    def dialogx_version = "0.0.45.beta12"
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.blankj:utilcodex:1.30.6'
+    implementation "com.github.kongzue.DialogX:DialogX:${dialogx_version}"
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'com.github.getActivity:XXPermissions:13.6'
+//    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}
