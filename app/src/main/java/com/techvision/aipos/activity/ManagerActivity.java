@@ -135,12 +135,12 @@ public class ManagerActivity extends BaseActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int ratioX1 = Integer.parseInt(editText1.getText().toString());
-                int ratioY1 = Integer.parseInt(editText2.getText().toString());
-                int ratioX2 = Integer.parseInt(editText3.getText().toString());
-                int ratioY2 = Integer.parseInt(editText4.getText().toString());
+                int left = Integer.parseInt(editText1.getText().toString());
+                int top = Integer.parseInt(editText2.getText().toString());
+                int width = Integer.parseInt(editText3.getText().toString());
+                int height = Integer.parseInt(editText4.getText().toString());
                 try {
-                    mService.setFreeAspectRatio(ratioX1,ratioY1,ratioX2,ratioY2);
+                    mService.setRectangularArea(left,top,width,height);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -330,14 +330,14 @@ public class ManagerActivity extends BaseActivity {
                 DataBaseResponse dataBaseResponse = mService.queryDatabase();
                 Log.d("LCCC", "queryDatabase: " + dataBaseResponse.message);
                 if (dataBaseResponse.status == AIPosStatus.Success) {
-                    WaitDialog.dismiss();
                     runOnUiThread(() -> {
                         handleDatabaseInfo(dataBaseResponse);
                     });
-                    Log.d("LCCC", "queryDatabase: " + dataBaseResponse.message + "  " + dataBaseResponse.threshold + "  " + dataBaseResponse.featureCount);
                     for (int i = 0; i < dataBaseResponse.featureCount; i++) {
                         Log.d("LCCC", "queryDatabase: " + dataBaseResponse.featureList.get(i).name + " " + dataBaseResponse.featureList.get(i).count);
                     }
+                    Log.d("LCCC", "queryDatabase: " + dataBaseResponse.message + "  " + dataBaseResponse.threshold + "  " + dataBaseResponse.featureCount);
+                    WaitDialog.dismiss();
                 } else {
                     WaitDialog.dismiss();
                     Log.d("LCCC", "查询结果为空！");

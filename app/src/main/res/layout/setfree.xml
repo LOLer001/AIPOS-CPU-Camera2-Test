@@ -8,25 +8,25 @@
         android:id="@+id/editText1"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="X1" />
+        android:hint="left" />
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="Y1" />
+        android:hint="top" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="X2" />
+        android:hint="width" />
 
     <EditText
         android:id="@+id/editText4"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="Y2" />
+        android:hint="height" />
 
     <Button
         android:id="@+id/btn_ok"

@@ -60,6 +60,7 @@ import cn.com.techvision.ai_pos_core_aidl.IDeviceAPI;
 import cn.com.techvision.ai_pos_core_aidl.IdentifyResponse;
 import cn.com.techvision.ai_pos_core_aidl.JpegImageResponse;
 import cn.com.techvision.ai_pos_core_aidl.NormalResponse;
+import cn.com.techvision.ai_pos_core_aidl.RectangularAreaResponse;
 import cn.com.techvision.ai_pos_core_aidl.entity.AIPosStatus;
 import cn.com.techvision.aipos.entity.ui.PosEntity;
 
@@ -179,39 +180,43 @@ public class PosActivity extends BaseActivity {
                                 IdentifyResponse identifyResponse = mService.identify();
                                 Log.d("LCCCtest", "onClick: identify "+ identifyResponse.message);
                                 if(identifyResponse.status == AIPosStatus.Success) {
-                                    Log.d("LCCCtest", "yes!!!");
-                                    data0 = 1;
-                                    feedName = identifyResponse.identifyList.get(0).name;
-                                    Log.d("LCCC", "identify: " + identifyResponse.message);
-                                    List<PosEntity> entities = new ArrayList<>();
-                                    for (int i = 0; i < identifyResponse.identifyList.size(); i++) {
-                                        Log.d("LCCC", "identify: " + identifyResponse.identifyList.get(i).name + " " + identifyResponse.identifyList.get(i).probability);
-                                        String name = identifyResponse.identifyList.get(i).name;
-                                        float confidence = Float.parseFloat(identifyResponse.identifyList.get(i).probability);
-                                        if (confidence < 0.001) {
-                                            confidence = 0.000F;
+                                    if(identifyResponse.identifyList != null) {
+                                        if (!identifyResponse.identifyList.isEmpty()) {
+                                            Log.d("LCCCtest", "yes!!!");
+                                            data0 = 1;
+                                            feedName = identifyResponse.identifyList.get(0).name;
+                                            Log.d("LCCC", "identify: " + identifyResponse.message);
+                                            List<PosEntity> entities = new ArrayList<>();
+                                            for (int i = 0; i < identifyResponse.identifyList.size(); i++) {
+                                                Log.d("LCCC", "identify: " + identifyResponse.identifyList.get(i).name + " " + identifyResponse.identifyList.get(i).probability);
+                                                String name = identifyResponse.identifyList.get(i).name;
+                                                float confidence = Float.parseFloat(identifyResponse.identifyList.get(i).probability);
+                                                if (confidence < 0.001) {
+                                                    confidence = 0.000F;
+                                                }
+                                                PresetItem item = PresetItem.Companion.getItemHashMap().get(name);
+                                                if (item != null) {
+                                                    PosEntity entity = new PosEntity();
+                                                    entity.setIds(item.getIds());
+                                                    entity.setName(name);
+                                                    entity.setUiName(item.getUiName());
+                                                    entity.setProbability(String.valueOf(confidence));
+                                                    entities.add(entity);
+                                                } else {
+                                                    PosEntity entity = new PosEntity();
+                                                    entity.setName(name);
+                                                    entity.setProbability(String.valueOf(confidence));
+                                                    entities.add(entity);
+                                                }
+                                                runOnUiThread(() -> {
+                                                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_item);
+                                                    GridLayoutManager gridLayoutManager = new GridLayoutManager(PosActivity.this, 4);  //网格布局
+                                                    recyclerView.setLayoutManager(gridLayoutManager);
+                                                    PosAdapter adapter = new PosAdapter(entities);
+                                                    recyclerView.setAdapter(adapter);
+                                                });
+                                            }
                                         }
-                                        PresetItem item = PresetItem.Companion.getItemHashMap().get(name);
-                                        if (item != null) {
-                                            PosEntity entity = new PosEntity();
-                                            entity.setIds(item.getIds());
-                                            entity.setName(name);
-                                            entity.setUiName(item.getUiName());
-                                            entity.setProbability(String.valueOf(confidence));
-                                            entities.add(entity);
-                                        } else {
-                                            PosEntity entity = new PosEntity();
-                                            entity.setName(name);
-                                            entity.setProbability(String.valueOf(confidence));
-                                            entities.add(entity);
-                                        }
-                                        runOnUiThread(()->{
-                                            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_item);
-                                            GridLayoutManager gridLayoutManager = new GridLayoutManager(PosActivity.this, 4);  //网格布局
-                                            recyclerView.setLayoutManager(gridLayoutManager);
-                                            PosAdapter adapter = new PosAdapter(entities);
-                                            recyclerView.setAdapter(adapter);
-                                        });
                                     }
                                 }
                             } catch (RemoteException e) {
@@ -237,11 +242,11 @@ public class PosActivity extends BaseActivity {
                             }
                         });
                         try {
-                            AspectFreeRatioResponse aspectFreeRatioResponse = mService.getAspectFreeRatio();
-                            float x1 = (float) aspectFreeRatioResponse.ratioX1/640;
-                            float y1 = (float) aspectFreeRatioResponse.ratioY1/320;
-                            float x2 = (float) aspectFreeRatioResponse.ratioX2/640;
-                            float y2 = (float) aspectFreeRatioResponse.ratioY2/320;
+                            RectangularAreaResponse rectangularAreaResponse = mService.getRectangularArea();
+                            float x1 = (float) rectangularAreaResponse.left/640;
+                            float y1 = (float) rectangularAreaResponse.top/320;
+                            float x2 = x1+(float) rectangularAreaResponse.width/640;
+                            float y2 = y1+(float) rectangularAreaResponse.height/320;
                             drawView.setPoints(x1,y1, x2,y2);
                         } catch (RemoteException e) {
                             e.printStackTrace();

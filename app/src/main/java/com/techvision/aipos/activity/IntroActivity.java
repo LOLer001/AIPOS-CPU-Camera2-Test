@@ -105,7 +105,9 @@ public class IntroActivity extends BaseActivity {
                     mService.startIOTService();
                     NormalResponse initResponse = mService.initAPI();
                     Log.d("LCCC", "initResponse: " + initResponse.message);
-                    mService.stopIOTService();
+                    if(initResponse.status == AIPosStatus.Success){
+                        mService.stopIOTService();
+                    }
                 }
             } catch (RemoteException | InterruptedException e) {
                 e.printStackTrace();
