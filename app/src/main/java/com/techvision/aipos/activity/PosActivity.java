@@ -18,6 +18,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.text.InputFilter;
@@ -88,6 +89,7 @@ public class PosActivity extends BaseActivity {
     private ImageView mImage;
     private String testName = null;
     IDeviceAPI mService = null;
+    private Handler uiHandler;
     private String feedName;
     LinkedBlockingQueue<Integer> retQueue = new LinkedBlockingQueue<Integer>();
     private final ServiceConnection scn = new ServiceConnection() {
@@ -135,7 +137,7 @@ public class PosActivity extends BaseActivity {
         mMaskLogo = (TextView)findViewById(R.id.mask_logo);
         mTvGoodName = (TextView)findViewById(R.id.tv_good_name);
         drawView = (DrawView) findViewById(R.id.drawview);
-
+        uiHandler = new Handler(getMainLooper());
         tryBindService();
         Executors.newSingleThreadExecutor().execute(() -> {
             try {
@@ -208,7 +210,7 @@ public class PosActivity extends BaseActivity {
                                                     entity.setProbability(String.valueOf(confidence));
                                                     entities.add(entity);
                                                 }
-                                                runOnUiThread(() -> {
+                                                uiHandler.post(() -> {
                                                     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_item);
                                                     GridLayoutManager gridLayoutManager = new GridLayoutManager(PosActivity.this, 4);  //网格布局
                                                     recyclerView.setLayoutManager(gridLayoutManager);
@@ -219,16 +221,10 @@ public class PosActivity extends BaseActivity {
                                         }
                                     }
                                 }
-                            } catch (RemoteException e) {
-                                e.printStackTrace();
-                            }
-                        });
-                        Executors.newSingleThreadExecutor().execute(()->{
-                            try {
                                 JpegImageResponse jpegImageResponse = mService.getPreviewFrame();
                                 if(jpegImageResponse.status == AIPosStatus.Success) {
                                     Log.d("LCCC", "getPreviewFrame: " + jpegImageResponse.message + " " + jpegImageResponse.jpegImage.length);
-                                    runOnUiThread(()->{
+                                    uiHandler.post(()->{
                                         BitmapFactory.Options options = new BitmapFactory.Options();
                                         options.inSampleSize = 1;
                                         Bitmap bmp = BitmapFactory.decodeByteArray(jpegImageResponse.jpegImage, 0,jpegImageResponse.jpegImage.length,options);
@@ -237,20 +233,36 @@ public class PosActivity extends BaseActivity {
                                         mMaskLogo.setVisibility(View.GONE);
                                     });
                                 }
-                            }catch (RemoteException e) {
+                                RectangularAreaResponse rectangularAreaResponse = mService.getRectangularArea();
+                                float x1 = (float) rectangularAreaResponse.left/640;
+                                float y1 = (float) rectangularAreaResponse.top/320;
+                                float x2 = x1+(float) rectangularAreaResponse.width/640;
+                                float y2 = y1+(float) rectangularAreaResponse.height/320;
+                                uiHandler.post(()->{
+                                    drawView.setPoints(x1,y1, x2,y2);
+                                });
+                            } catch (RemoteException e) {
                                 e.printStackTrace();
                             }
                         });
-                        try {
-                            RectangularAreaResponse rectangularAreaResponse = mService.getRectangularArea();
-                            float x1 = (float) rectangularAreaResponse.left/640;
-                            float y1 = (float) rectangularAreaResponse.top/320;
-                            float x2 = x1+(float) rectangularAreaResponse.width/640;
-                            float y2 = y1+(float) rectangularAreaResponse.height/320;
-                            drawView.setPoints(x1,y1, x2,y2);
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
-                        }
+//                        Executors.newSingleThreadExecutor().execute(()->{
+//                            try {
+//                                JpegImageResponse jpegImageResponse = mService.getPreviewFrame();
+//                                if(jpegImageResponse.status == AIPosStatus.Success) {
+//                                    Log.d("LCCC", "getPreviewFrame: " + jpegImageResponse.message + " " + jpegImageResponse.jpegImage.length);
+//                                    runOnUiThread(()->{
+//                                        BitmapFactory.Options options = new BitmapFactory.Options();
+//                                        options.inSampleSize = 1;
+//                                        Bitmap bmp = BitmapFactory.decodeByteArray(jpegImageResponse.jpegImage, 0,jpegImageResponse.jpegImage.length,options);
+//                                        mImage.setImageBitmap(bmp);
+//                                        mIvItem.setImageBitmap(bmp);
+//                                        mMaskLogo.setVisibility(View.GONE);
+//                                    });
+//                                }
+//                            }catch (RemoteException e) {
+//                                e.printStackTrace();
+//                            }
+//                        });
                     }
             }
         });

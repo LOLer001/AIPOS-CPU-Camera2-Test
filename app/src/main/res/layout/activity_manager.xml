@@ -201,6 +201,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="16dp" />
 
+            <TextView
+                android:id="@+id/btn_start_iot_service"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/gray_80"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="启动IOT服务"
+                android:visibility="visible"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/btn_stop_iot_service"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/clickable_tv"
+                android:backgroundTint="@color/gray_80"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="停止IOT服务"
+                android:visibility="visible"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="16dp" />
+
             <!--            <TextView-->
             <!--                android:id="@+id/btn_iot"-->
             <!--                android:layout_width="360dp"-->

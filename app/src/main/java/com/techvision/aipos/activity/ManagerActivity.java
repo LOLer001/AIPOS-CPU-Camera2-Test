@@ -77,6 +77,8 @@ public class ManagerActivity extends BaseActivity {
     private Process mProcess;
     private TextView mBtnTest;
     private TextView mBtnSetFreeRatio;
+    private TextView mBtnStartIotService;
+    private TextView mBtnStopIotService;
     byte[] data;
     IDeviceAPI mService = null;
     private String feedName;
@@ -123,6 +125,8 @@ public class ManagerActivity extends BaseActivity {
         mBtnAuth = (TextView) findViewById(R.id.btn_auth);
         mBtnTest = (TextView) findViewById(R.id.btn_test);
         mBtnSetFreeRatio = (TextView) findViewById(R.id.btn_setfreeratio);
+        mBtnStartIotService = (TextView) findViewById(R.id.btn_start_iot_service);
+        mBtnStopIotService = (TextView) findViewById(R.id.btn_stop_iot_service);
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.setfree);
 
@@ -164,6 +168,28 @@ public class ManagerActivity extends BaseActivity {
             }
         });
 
+        mBtnStartIotService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    mService.startIOTService();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        mBtnStopIotService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    mService.stopIOTService();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         mBtnSetFreeRatio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -201,15 +227,21 @@ public class ManagerActivity extends BaseActivity {
                         String threshold = inputServer.getText().toString();
                         if (threshold != null && !threshold.isEmpty()) {
                             NormalResponse ret = null;
-                            try {
-                                ret = mService.setIdentifyThreshold(Integer.parseInt(threshold));
-                            } catch (RemoteException e) {
-                                e.printStackTrace();
-                            }
-                            if (ret.status != AIPosStatus.Success) {
-                                TipDialog.show("设置失败,请检查配置");
-                            } else {
-                                Toast.makeText(ManagerActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
+                            if(threshold.contains(".")){
+                                TipDialog.show("请设置阈值为90~100的整数");
+                            }else if(Integer.parseInt(threshold)<90||Integer.parseInt(threshold)>100){
+                                TipDialog.show("请设置阈值为90~100的整数");
+                            }else {
+                                try {
+                                    ret = mService.setIdentifyThreshold(Integer.parseInt(threshold));
+                                } catch (RemoteException e) {
+                                    e.printStackTrace();
+                                }
+                                if (ret.status != AIPosStatus.Success) {
+                                    TipDialog.show("设置失败,请检查配置");
+                                } else {
+                                    Toast.makeText(ManagerActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         } else {
                             Toast.makeText(ManagerActivity.this, "阈值数为空", Toast.LENGTH_SHORT).show();

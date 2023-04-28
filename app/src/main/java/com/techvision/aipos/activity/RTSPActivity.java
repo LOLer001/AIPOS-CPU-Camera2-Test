@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -59,6 +60,7 @@ public class RTSPActivity extends BaseActivity {
     private String testName = null;
     IDeviceAPI mService = null;
     private String updateName;
+    private Handler uiHandler;
     LinkedBlockingQueue<Integer> retQueue = new LinkedBlockingQueue<Integer>();
     private final ServiceConnection scn = new ServiceConnection() {
         @Override
@@ -94,6 +96,8 @@ public class RTSPActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rtsp_vlc);
         mImage = (ImageView) findViewById(R.id.image);
+        uiHandler = new Handler(getMainLooper());
+        Log.d("LCCC", "mImage: " + mImage.getWidth() + " " +mImage.getHeight());
         tryBindService();
         Executors.newSingleThreadExecutor().execute(() -> {
             try {
@@ -109,7 +113,7 @@ public class RTSPActivity extends BaseActivity {
                 JpegImageResponse jpegImageResponse = mService.getPreviewFrame();
                 if(jpegImageResponse.status == AIPosStatus.Success) {
                     Log.d("LCCC", "getPreviewFrame: " + jpegImageResponse.message + " " + jpegImageResponse.jpegImage.length);
-                    runOnUiThread(()->{
+                    uiHandler.post(()->{
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inSampleSize = 1;
                         Bitmap bmp = BitmapFactory.decodeByteArray(jpegImageResponse.jpegImage, 0,jpegImageResponse.jpegImage.length,options);
@@ -138,7 +142,7 @@ public class RTSPActivity extends BaseActivity {
                             JpegImageResponse jpegImageResponse = mService.getPreviewFrame();
                             if(jpegImageResponse.status == AIPosStatus.Success) {
                                 Log.d("LCCC", "getPreviewFrame: " + jpegImageResponse.message + " " + jpegImageResponse.jpegImage.length);
-                                runOnUiThread(()->{
+                                uiHandler.post(()->{
                                     BitmapFactory.Options options = new BitmapFactory.Options();
                                     options.inSampleSize = 1;
                                     Bitmap bmp = BitmapFactory.decodeByteArray(jpegImageResponse.jpegImage, 0,jpegImageResponse.jpegImage.length,options);
